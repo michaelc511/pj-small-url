@@ -3,10 +3,13 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import route from  "./routes/urlRoute";      
-// import route from "./routes/userRoute";
+import cors from "cors";
 
 const app: Express = express();
 app.use(bodyParser.json());
+app.use(cors({
+    origin: 'http://localhost:5173'
+  }));
 
 dotenv.config();
 
@@ -22,26 +25,4 @@ mongoose.connect(MONGOURL).then(() => {
     })
 }).catch(error => console.log(error));
 
-app.use("/api/url", route);
-// app.use("/api/user", route);
-
-// import express, { Express, Application , Request, Response } from "express";
-// import mongoose from "mongoose";
-// import bodyParser from "body-parser";
-// import dotenv from "dotenv";
-// // import route from "./routes/userRoute";
-
-// const app: Application = express();
-
-// dotenv.config();
-// const port: string | number = process.env.PORT  ;
-
-// app.get("/", (req: Request, res:Response) => {
-//   res.send("Hello World24!");
-// });
-
-// app.listen(port, () => {
-//   console.log(
-//     `Example app listening at http://localhost:${port}`
-//   );
-// });
+app.use("/api/url", route); 

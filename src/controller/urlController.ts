@@ -18,8 +18,7 @@ export const create = async (
         .status(400)
         .json({ error: "URL already exists" });
       return;
-    }
-console.log('full', full);
+    } 
 
     if(!validUrl.isUri(full)){
       res
